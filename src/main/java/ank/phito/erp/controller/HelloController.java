@@ -1,5 +1,6 @@
 package ank.phito.erp.controller;
 
+import ank.phito.erp.model.MeResponse;
 import ank.phito.erp.security.UserPrincipal;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +19,8 @@ public class HelloController {
     }
 
     @GetMapping("/me")
-    public String me(@AuthenticationPrincipal UserPrincipal principal) {
-        return "This can only be seen by a logged in user. Your Email is: " + principal.getEmail();
+    public MeResponse me(@AuthenticationPrincipal UserPrincipal principal) {
+        return MeResponse.builder().massage("Me is successful").build();
     }
 
     @GetMapping("/secured")
