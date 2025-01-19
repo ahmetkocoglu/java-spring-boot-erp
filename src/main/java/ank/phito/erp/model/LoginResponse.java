@@ -6,5 +6,7 @@ import lombok.Getter;
 @Getter
 @Builder
 public class LoginResponse {
+    private Boolean error;
     private String token;
+    private String massage;
 }

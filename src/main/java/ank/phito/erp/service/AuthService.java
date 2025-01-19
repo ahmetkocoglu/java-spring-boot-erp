@@ -31,6 +31,8 @@ public class AuthService {
 
         return LoginResponse.builder()
                 .token(token)
+                .error(false)
+                .massage("Login is successful")
                 .build();
     }
 }
