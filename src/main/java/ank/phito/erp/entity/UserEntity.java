@@ -1,5 +1,6 @@
 package ank.phito.erp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,6 +14,7 @@ public class UserEntity {
 
     private String email;
 
+    @JsonIgnore
     private String password;
 
     private String role;

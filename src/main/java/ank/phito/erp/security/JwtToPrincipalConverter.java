@@ -9,7 +9,7 @@ import java.util.List;
 @Component
 public class JwtToPrincipalConverter {
     public UserPrincipal convert(DecodedJWT jwt) {
-        var authorityList = getClaimOrEmptyList(jwt, "au").stream()
+        var authorityList = getClaimOrEmptyList(jwt).stream()
                 .map(SimpleGrantedAuthority::new)
                 .toList();
 
@@ -20,8 +20,8 @@ public class JwtToPrincipalConverter {
                 .build();
     }
 
-    private List<String> getClaimOrEmptyList(DecodedJWT jwt, String claim) {
-        if (jwt.getClaim(claim).isNull()) return List.of();
-        return jwt.getClaim(claim).asList(String.class);
+    private List<String> getClaimOrEmptyList(DecodedJWT jwt) {
+        if (jwt.getClaim("au").isNull()) return List.of();
+        return jwt.getClaim("au").asList(String.class);
     }
 }
