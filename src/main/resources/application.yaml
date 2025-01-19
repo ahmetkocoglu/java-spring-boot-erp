@@ -1,6 +1,6 @@
 security:
   jwt:
-    secret-key: verysecretkeyohsosecretdamnhowlongisthispleasedontusethisinproduction
+    secret-key: P@ssw0rd
     token-duration: 1D
 
 logging:
