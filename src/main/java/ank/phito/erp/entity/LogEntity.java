@@ -1,17 +1,27 @@
 package ank.phito.erp.entity;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 /**
  * This would be JPA managed entity or Mongo document, but for this example it's just a POJO
  */
 @Getter
 @Setter
-public class LogEntity {
-    private Long id;
 
+@Document(collection = "logs")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class LogEntity {
+    @Id
+    private String id;
+
+    @Field("title")
     private String title;
 
+    @Field("description")
     private String description;
 }
