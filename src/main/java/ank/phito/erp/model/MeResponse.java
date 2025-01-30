@@ -7,4 +7,5 @@ import lombok.Getter;
 @Builder
 public class MeResponse {
     private String massage;
+    private String email;
 }

@@ -1,24 +1,18 @@
 package ank.phito.erp.controller;
 
-import ank.phito.erp.entity.LogEntity;
-import ank.phito.erp.model.LogRequest;
 import ank.phito.erp.model.MeResponse;
 import ank.phito.erp.security.UserPrincipal;
-import ank.phito.erp.service.LogService;
+import ank.phito.erp.service.ILogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 public class HelloController {
 
     @Autowired
-    LogService logService;
+    ILogService logService;
 
     @GetMapping("/")
     public String hello() {
@@ -31,13 +25,8 @@ public class HelloController {
     }
 
     @GetMapping("/me")
-    public MeResponse me(@AuthenticationPrincipal UserPrincipal principal, @RequestBody @Validated LogRequest logRequest) {
-        LogEntity logEntity = new LogEntity();
-        logEntity.setTitle("title");
-        logEntity.setDescription("description");
-
-        String lst = logService.saveLog(logEntity);
-        return MeResponse.builder().massage("Me is successful").build();
+    public MeResponse me(@AuthenticationPrincipal UserPrincipal principal) {
+        return MeResponse.builder().massage("Me is successful").email(principal.getEmail()).build();
     }
 
     @GetMapping("/secured")
