@@ -8,6 +8,8 @@ import ank.phito.erp.repository.UserRepository;
 import ank.phito.erp.service.IUserService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -36,7 +38,7 @@ public class UserServiceImpl implements IUserService {
             System.out.println("getRole >> " + dbUse.getRole());
             System.out.println("setExtraInfo >> " + dbUse.getExtraInfo());*/
 
-            dbUse.setId("1");
+//            dbUse.setId("1");
             dbUse.setRole("ROLE_ADMIN");
             dbUse.setExtraInfo("My nice admin user");
 
@@ -74,15 +76,23 @@ public class UserServiceImpl implements IUserService {
         }*/
     }
 
+    private PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
     @Override
     public DtoUser saveUser(DtoUserIU dtoUserIU) {
         DtoUser response = new DtoUser();
-        UserEntity user = new UserEntity();
-        BeanUtils.copyProperties(dtoUserIU, user);
+        Optional<UserEntity> optional = userRepository.findByEmail(dtoUserIU.getEmail());
+        if (optional.isEmpty())  {
+            UserEntity user = new UserEntity();
+            BeanUtils.copyProperties(dtoUserIU, user);
 
-        UserEntity dbUser = userRepository.save(user);
-        BeanUtils.copyProperties(dbUser, response);
+            user.setPassword(passwordEncoder().encode(user.getPassword()));
 
+            UserEntity dbUser = userRepository.save(user);
+            BeanUtils.copyProperties(dbUser, response);
+        }
         return response;
     }
 

@@ -31,7 +31,7 @@ public class JwtIssuer {
     @Getter
     @Builder
     public static class Request {
-        private final Long userId;
+        private final String userId;
         private final String email;
         private final List<String> roles;
     }

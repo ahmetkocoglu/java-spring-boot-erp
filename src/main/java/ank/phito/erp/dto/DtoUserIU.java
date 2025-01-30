@@ -30,6 +30,6 @@ public class DtoUserIU {
 
     @NotEmpty(message = "password field cannot be left blank!")
     @Min(value = 8 , message = "password must be at least 3 characters")
-    @Max(value = 10 , message = "The password field must be a maximum of 50 characters.")
+    @Max(value = 100 , message = "The password field must be a maximum of 50 characters.")
     private String password;
 }

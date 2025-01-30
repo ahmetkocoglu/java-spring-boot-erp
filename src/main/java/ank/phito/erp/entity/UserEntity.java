@@ -20,10 +20,10 @@ public class UserEntity {
     @Id
     private String id;
 
-    @Field("firstName")
+    @Field("first_name")
     private String firstName;
 
-    @Field("lastName")
+    @Field("last_name")
     private String lastName;
 
     @Field("email")
