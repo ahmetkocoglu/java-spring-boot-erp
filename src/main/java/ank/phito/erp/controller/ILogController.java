@@ -10,9 +10,9 @@ public interface ILogController {
 
     public List<DtoLog> getAllLog();
 
-    public DtoLog getLogById(Integer id);
+    public DtoLog getLogById(String id);
 
-    public void deleteLog(Integer id);
+    public void deleteLog(String id);
 
-    public DtoLog updateLog(Integer id , DtoLogIU dtoLogIU);
+    public DtoLog updateLog(String id , DtoLogIU dtoLogIU);
 }

@@ -2,17 +2,19 @@ package ank.phito.erp.controller;
 
 import ank.phito.erp.model.MeResponse;
 import ank.phito.erp.security.UserPrincipal;
-import ank.phito.erp.service.ILogService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HelloController {
 
-    @Autowired
-    ILogService logService;
+    private final PasswordEncoder passwordEncoder;
+
+    public HelloController(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @GetMapping("/")
     public String hello() {
@@ -22,6 +24,16 @@ public class HelloController {
     @GetMapping("/public")
     public String publicEndpoint() {
         return "Everyone can see this";
+    }
+
+    @GetMapping("/test")
+    public String test() {
+        return passwordEncoder.encode("12345678");
+    }
+
+    @GetMapping("/matches")
+    public boolean matches() {
+        return passwordEncoder.matches("12345678", "$2a$10$qgNkgxdHPBkt.Lbzi0sz5uwEnF68LJOMPjgcDWGNVWvLY9/64yM0.");
     }
 
     @GetMapping("/me")
