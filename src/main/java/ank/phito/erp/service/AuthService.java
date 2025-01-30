@@ -24,7 +24,7 @@ public class AuthService {
         var principal = (UserPrincipal) authentication.getPrincipal();
 
         var token = jwtIssuer.issue(JwtIssuer.Request.builder()
-                .userId(principal.getUserId())
+                .userId(Long.valueOf(principal.getUserId()))
                 .email(principal.getEmail())
                 .roles(principal.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList())
                 .build());

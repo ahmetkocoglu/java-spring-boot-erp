@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @Builder
 public class UserPrincipal implements UserDetails {
-    private final Long userId;
+    private final String userId;
     private final String email;
 
     @JsonIgnore
