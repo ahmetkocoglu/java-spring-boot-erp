@@ -2,7 +2,6 @@ package ank.phito.erp.service.impl;
 
 import ank.phito.erp.dto.DtoUser;
 import ank.phito.erp.dto.DtoUserIU;
-import ank.phito.erp.entity.LogEntity;
 import ank.phito.erp.entity.UserEntity;
 import ank.phito.erp.repository.UserRepository;
 import ank.phito.erp.service.IUserService;
