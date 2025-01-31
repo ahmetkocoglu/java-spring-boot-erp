@@ -40,6 +40,7 @@ public class WebSecurityConfig {
                         .requestMatchers("/test/**").permitAll()
                         .requestMatchers("/logs/**").permitAll()
                         .requestMatchers("/users/**").permitAll()
+                        .requestMatchers("/products/**").permitAll()
                         .requestMatchers("/auth/login").permitAll()
                         .requestMatchers("/auth/register").permitAll()
                         .requestMatchers("/admin").hasRole("ADMIN")
