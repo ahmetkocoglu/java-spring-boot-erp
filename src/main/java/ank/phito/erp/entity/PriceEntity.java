@@ -2,8 +2,12 @@ package ank.phito.erp.entity;
 
 import lombok.*;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.data.annotation.ReadOnlyProperty;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * This would be JPA managed entity or Mongo document, but for this example it's just a POJO
@@ -24,4 +28,8 @@ public class PriceEntity {
 
     @Field("description")
     private String description;
+
+    @Indexed
+    @Field("productId")
+    private ProductEntity productId;
 }

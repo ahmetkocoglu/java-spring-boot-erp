@@ -22,4 +22,6 @@ public class DtoPriceIU {
     @Min(value = 3 , message = "Title must be at least 3 characters")
     @Max(value = 10 , message = "The title field must be a maximum of 50 characters.")
     private String description;
+
+    private String productId;
 }

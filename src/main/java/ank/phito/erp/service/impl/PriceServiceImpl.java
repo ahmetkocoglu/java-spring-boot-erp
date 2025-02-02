@@ -24,6 +24,8 @@ public class PriceServiceImpl implements IPriceService {
         PriceEntity log = new PriceEntity();
         BeanUtils.copyProperties(dtoPriceIU, log);
 
+        System.out.println("getProductId >> " + dtoPriceIU.getProductId());
+
         PriceEntity dbPrice = priceRepository.save(log);
         BeanUtils.copyProperties(dbPrice, response);
 
