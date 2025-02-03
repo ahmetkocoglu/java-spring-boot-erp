@@ -16,10 +16,10 @@ import java.util.List;
 @Getter
 @Setter
 
-@Document(collection = "products")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Document(collection = "products")
 public class ProductEntity {
     @Id
     private String id;

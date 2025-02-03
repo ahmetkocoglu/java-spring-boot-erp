@@ -3,6 +3,8 @@ package ank.phito.erp.controller.impl;
 import ank.phito.erp.controller.IPriceController;
 import ank.phito.erp.dto.DtoPrice;
 import ank.phito.erp.dto.DtoPriceIU;
+import ank.phito.erp.entity.PriceEntity;
+import ank.phito.erp.repository.PriceRepository;
 import ank.phito.erp.service.IPriceService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +19,19 @@ public class PriceControllerImpl implements IPriceController {
     @Autowired
     private IPriceService priceService;
 
+    @Autowired
+    PriceRepository priceRepository;
+
     @PostMapping(path = "")
+    public String savePriceNew(@RequestBody @Valid PriceEntity price) {
+        System.out.println("price");
+        PriceEntity dbPrice = priceRepository.save(price);
+        return "success";
+    }
+
     @Override
-    public DtoPrice savePrice(@RequestBody @Valid DtoPriceIU dtoPriceIU) {
-        System.out.println("dtoPriceIU");
-        return priceService.savePrice(dtoPriceIU);
+    public DtoPrice savePrice(DtoPriceIU dtoPriceIU) {
+        return null;
     }
 
     @GetMapping(path = "")

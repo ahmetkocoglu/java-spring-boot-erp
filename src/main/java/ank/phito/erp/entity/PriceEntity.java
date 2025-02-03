@@ -3,11 +3,7 @@ package ank.phito.erp.entity;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.ReadOnlyProperty;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.*;
-
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * This would be JPA managed entity or Mongo document, but for this example it's just a POJO
@@ -15,10 +11,10 @@ import java.util.Set;
 @Getter
 @Setter
 
-@Document(collection = "prices")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Document(collection = "prices")
 public class PriceEntity {
     @Id
     private String id;
@@ -29,7 +25,6 @@ public class PriceEntity {
     @Field("description")
     private String description;
 
-    @Indexed
-    @Field("productId")
-    private ProductEntity productId;
+    @DocumentReference(collection = "products")
+    private ProductEntity product;
 }
